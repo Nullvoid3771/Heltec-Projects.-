@@ -92,7 +92,7 @@ Feedback on the NrfTracker v2’s general spec’s: Overall I think the spec's l
 Spec's borrowed from https://www.la-resilience.fr/2026/03/heltec-wireless-tracker-v2-nrf/
 
 Features Description
-MCU 	nRF52840 https://www.nordicsemi.com/Products/nRF52840
+MCU         nRF52840 https://www.nordicsemi.com/Products/nRF52840
 LoRa chip 	SX1262 https://www.semtech.com/products/wireless-rf/lora-connect/sx1262
 GNSS chip 	UC6580 https://en.unicore.com/products/dual-band-gps-chip-uc6580/
 Frequency 	863 ~ 928 MHz
