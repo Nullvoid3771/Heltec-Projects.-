@@ -101,8 +101,8 @@ Sensitivity 	-134 dBm
 Bluetooth 	Bluetooth 5 (BLE)
 Resources 	ADC, GPIO, UART, I2C, SPI
 Interfaces 	USB Type-C; 1 × battery connector (JST 1.25 mm); 1 × solar panel connector (JST 1.25 mm); LoRa antenna (IPEX 1.0); GNSS antenna (IPEX 1.0); 2 × 18-pin (2.54 mm)
-Battery: 	N/A
-Solar: N/A
+Battery: 	Port for battery but no battery installed currently.
+Solar: Port for solar but no solar installed currently.
 Temperature 	-20 ~ 70 °C
 Dimensions 	52.00 × 25.40 × 10.26 mm
 
