@@ -1,1 +1,279 @@
-# Heltec-Projects.-
+Will update as I test. 
+
+[NrfTracker v2]
+
+Hardware design
+-Pro’s: rev 1.0 of the nrftracker v2 Design seems nice close to feeling like it has it's own enclosure just from the front panel. 
+-Con’s: Front panel display may need to be removed in order to safely solder to the gpio pins. 
+
+Display
+-Pro’s: bright small but easy to read screen. Screen removal appears easy enough by removing 4 small screws, just need to be careful seperating the screen from the board as their is a ribbon cable you need to carefully unplug.  
+-Con’s: screen size could be a bit bigger. but it functions. 
+
+Radio type
+-Pro’s: sx1262 common second generation radio prefered over the first generation radio like the 127x. 
+Tests: I have on order a 30 dB attenuator and RF meter to read the output of tx. Firmware reads output set to 22 dBm. Then the PA increases the tx to 28 dBm +-. waiting on the reader to see actual results. Will use role Tracker; broadcast mode all. 
+-Con’s: third lr1121 and forth generation radios lr2021 include dual frequency SubGhz eg. 868 915Mhz and 2.4Ghz. Might be the better choice in the future; except it will need the internal Power amplifiers also to reach 28dBm like the prior generations.  
+
+User provided antenna
+-Pro’s: Heltec whip antenna so the antenna is known. ipex to sma pigtail. 
+Base Antenna: 
+-Con’s: No antenna or pigtail was provided, but I had some. 
+
+Enclosure 
+-Currently no 3d printed models are avalible yet so a less complex approch was taken and used a modified advil bottle.   
+
+Lora antenna port
+-Pro’s: Ipex which is fairly standard and provides flexibility in tigher enclosures. 
+-Con’s: Ipex is known to be easier to damage accidentially. a stright sma port maybe bettter, at risk of flexibily in enclosure design. 
+
+Bluetooth antenna port (if applicable)
+-Pro’s: Built in. 
+-Con’s: no external ipex for bluetooth.
+
+GNSS antenna port 
+-Pro’s: Has a built in GNSS antenna, but optionally has the ability to use your own GNSS antenna. 
+-Con’s: need to wire a resister to the board to use ipex. 
+
+Microcontroller
+-Pro’s: nRF52 more power efficent lacks wifi and a secondary core. 
+-Con’s: compared to the esp32 it does lack wifi and a core but gains power efficentcy. 
+
+IO interfaces
+-Does the hardware feature enough free GPIO ports for your applications? Y/N Why?: Y Has 2 sets of free gpio pins. I don't really add to much to gpio normally, but I can imagine some people like to add more.  
+-Bluetooth (list any issues): No issues found, connects well using the meshtastic web client via bluetooth to PC. 
+-GPIO (list any issues if applicable): N/A Haven't explored that far in it's use to try anything with gpio. 
+-Serial USB (list any issues if applicable): No issues found using the meshtastic web client and serial to device.
+
+Input buttons
+-Pro’s: Has enough buttons to get the job done. Easy to navigate the basicUI menu from meshtastic. Button's have a good click to them; not worried about any flexing from button pressing.  
+-Con’s: None really. 
+
+GPS
+-Pro’s: Built in UC6580 GNSS, Doesn't require soldering or plugging in a external module. optional gnss ipex port. offers more satellites then the US only GPS. 
+-Con’s: N/A
+
+For testing:
+How often to send position updates:
+Broadcast Interval - How often your position is sent out over the mesh = 900 Seconds
+GPS Update Interval - How often a GPS fix should be acquired = 60 Seconds
+Smart Position Enabled = No
+
+[Power]
+
+USB
+-Pro’s: Usb is the only method of powering the device currently as I lack a solar panel or battery. 
+-Con’s: N/A
+
+Solar
+-Pro’s: N/A
+-Con’s: N/A
+
+Battery
+-Pro’s: N/A
+-Con’s: N/A
+
+[Traceroute for NrfTracker v2]
+
+Trace route ( Specify any trace routes performed): [Close range *distence offsets used: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] (0.0 dB) → Meshtastic a078 [a078] (6.8 dB) → NRFTrackerv2 [NTv2] [21.1 km]
+← Return: NRFTrackerv2 [NTv2] (6.5 dB) → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] ] 
+
+
+
+
+Areas to improve; (State what you believe needs to be addressed before the launch of the product): Seems about as solid as the heltec v4. 
+
+It was stated the front sticker was going to be changed on the release version. 
+
+Feedback on the NrfTracker v2’s general spec’s:
+
+Wishlist; what do believe the Nrftracker v2 or future products could most benefit from?: Could use a sd card reader in all future products. 
+
+From documentation provided what should be included or improved on: 
+
+
+[Firmware]
+
+Meshtastic
+
+-Installation ease? Y/N Why?: Y (came preinstalled with 2.7.19 meshtastic)
+-Firmware version: 2.7.19
+-Pro’s: Newer firmware gives us better compatibility. 
+-Con’s: 2.7.20 is the latest alpha so only one behind. Meshtastic's webflasher can make things difficult to update if it's not listed as a released device yet. 
+
+Boot Debug: 
+
+▒▒@INFO  | ??:??:?? 3
+
+//\ E S H T /\ S T / C
+
+INFO  | ??:??:?? 3 Wait for peripherals to stabilize
+DEBUG | ??:??:?? 4 Filesystem files:
+DEBUG | ??:??:?? 4  prefs (directory)
+DEBUG | ??:??:?? 4    config.proto (367 Bytes)
+DEBUG | ??:??:?? 4    module.proto (116 Bytes)
+DEBUG | ??:??:?? 4    channels.proto (114 Bytes)
+DEBUG | ??:??:?? 5    device.proto (133 Bytes)
+DEBUG | ??:??:?? 5    nodes.proto (902 Bytes)
+DEBUG | ??:??:?? 5  adafruit (directory)
+DEBUG | ??:??:?? 5  bond_prph (directory)
+DEBUG | ??:??:?? 5  bond_cntr (directory)
+DEBUG | ??:??:?? 5 Power::max17048Init lipo sensor is not ready yet
+DEBUG | ??:??:?? 5 Use analog input 3 for battery level
+INFO  | ??:??:?? 5 Scan for i2c devices
+DEBUG | ??:??:?? 5 Scan for I2C devices on port 2
+DEBUG | ??:??:?? 5 Scan for I2C devices on port 1
+INFO  | ??:??:?? 5 No I2C devices found
+DEBUG | ??:??:?? 5 acc_info = 0
+INFO  | ??:??:?? 5 S:B:36,2.7.19.410d815,heltec-tracker-nrf,git@github.com:Quenc                                                                                                                                                             y-D/firmware
+INFO  | ??:??:?? 5 Build timestamp: 1770825600
+DEBUG | ??:??:?? 5 Reset reason: 0x0
+DEBUG | ??:??:?? 5 Set random seed 93600570
+INFO  | ??:??:?? 5 Init NodeDB
+INFO  | ??:??:?? 5 Load /prefs/nodes.proto
+INFO  | ??:??:?? 5 Loaded /prefs/nodes.proto successfully
+INFO  | ??:??:?? 5 Loaded saved nodedatabase version 24, with nodes count: 7
+INFO  | ??:??:?? 5 Load /prefs/device.proto
+INFO  | ??:??:?? 5 Loaded /prefs/device.proto successfully
+INFO  | ??:??:?? 5 Loaded saved devicestate version 24
+INFO  | ??:??:?? 5 Load /prefs/config.proto
+INFO  | ??:??:?? 5 Loaded /prefs/config.proto successfully
+INFO  | ??:??:?? 5 Loaded saved config version 24
+INFO  | ??:??:?? 5 Load /prefs/module.proto
+INFO  | ??:??:?? 5 Loaded /prefs/module.proto successfully
+INFO  | ??:??:?? 5 Loaded saved moduleConfig version 24
+INFO  | ??:??:?? 5 Load /prefs/channels.proto
+INFO  | ??:??:?? 5 Loaded /prefs/channels.proto successfully
+INFO  | ??:??:?? 5 Loaded saved channelFile version 24
+ERROR | ??:??:?? 5 Could not open / read /prefs/uiconfig.proto
+DEBUG | ??:??:?? 5 cleanupMeshDB purged 1 entries
+DEBUG | ??:??:?? 5 Use nodenum 0x66f1c31d
+DEBUG | ??:??:?? 5 Expand short PSK #1
+INFO  | ??:??:?? 5 Wanted region 1, using US
+DEBUG | ??:??:?? 5 Coerce telemetry to min of 30 minutes on defaults
+DEBUG | ??:??:?? 5 Coerce position broadcasts to min of 1 hour and smart broadca                                                                                                                                                             st min of 5 minutes on defaults
+INFO  | ??:??:?? 5 Sort took 0 milliseconds
+DEBUG | ??:??:?? 5 Save to disk 0
+WARN  | ??:??:?? 5 Packet History - Invalid size -1, using default 160
+INFO  | ??:??:?? 5 Setting screen RGB color to default: (255,255,128)
+DEBUG | ??:??:?? 5 TFTDisplay!
+DEBUG | ??:??:?? 5 Use compiled/slipstreamed tzplaceholder                                                                                                                                                                                   
+DEBUG | ??:??:?? 5 Saved TZ: EST5EDT,M3.2.0/02:00:00,M11.1.0/02:00:00
+DEBUG | ??:??:?? 5 Set Timezone to EST5EDT,M3.2.0/02:00:00,M11.1.0/02:00:00
+INFO  | ??:??:?? 5 GPS power state move from OFF to ACTIVE
+DEBUG | ??:??:?? 5 Use GPIO23 for GPS RX
+DEBUG | ??:??:?? 5 Use GPIO25 for GPS TX
+ERROR | ??:??:?? 5 Could not open / read /prefs/cannedConf.proto
+INFO  | ??:??:?? 5 CannedMessageModule is enabled
+INFO  | ??:??:?? 5 External Notification Module Disabled
+DEBUG | ??:??:?? 5 Rescan for I2C keyboard
+DEBUG | ??:??:?? 5 Scan for I2C devices on port 2
+DEBUG | ??:??:?? 5 Scan address 0x1f
+DEBUG | ??:??:?? 5 Scan address 0x34
+DEBUG | ??:??:?? 5 Scan address 0x55
+DEBUG | ??:??:?? 5 Scan address 0x5a
+DEBUG | ??:??:?? 5 Scan address 0x5f
+DEBUG | ??:??:?? 5 Scan for I2C devices on port 1
+DEBUG | ??:??:?? 5 Scan address 0x1f
+DEBUG | ??:??:?? 5 Scan address 0x34
+DEBUG | ??:??:?? 5 Scan address 0x55
+DEBUG | ??:??:?? 5 Scan address 0x5a
+DEBUG | ??:??:?? 5 Scan address 0x5f
+INFO  | ??:??:?? 5 Do TFT init
+INFO  | ??:??:?? 5 Power to TFT Backlight
+INFO  | ??:??:?? 6 Applied screen brightness: 153
+INFO  | ??:??:?? 6 Turn on screen
+INFO  | ??:??:?? 6 MessageStore loaded from flash
+DEBUG | ??:??:?? 6 waypoint wants a UI Frame
+DEBUG | ??:??:?? 6 traceroute wants a UI Frame
+DEBUG | ??:??:?? 6 canned wants a UI Frame
+DEBUG | ??:??:?? 6 SX126xInterface(cs=5, irq=21, rst=16, busy=19)
+DEBUG | ??:??:?? 6 SX126X_DIO3_TCXO_VOLTAGE defined, using DIO3 as TCXO reference voltage at 1.800000 V
+INFO  | ??:??:?? 6 Start meshradio init
+INFO  | ??:??:?? 6 Radio freq=906.875, config.lora.frequency_offset=0.000
+INFO  | ??:??:?? 6 Set radio: region=US, name=LongFast, config=0, ch=19, power=30
+INFO  | ??:??:?? 6 myRegion->freqStart -> myRegion->freqEnd: 902.000000 -> 928.000000 (26.000000 MHz)
+INFO  | ??:??:?? 6 numChannels: 104 x 250.000kHz
+INFO  | ??:??:?? 6 channel_num: 20
+INFO  | ??:??:?? 6 frequency: 906.875000
+INFO  | ??:??:?? 6 Slot time: 28 msec, preamble time: 131 msec
+INFO  | ??:??:?? 6 Final Tx power: 22 dBm
+INFO  | ??:??:?? 6 SX126x init result 0
+INFO  | ??:??:?? 6 Frequency set to 906.875000
+INFO  | ??:??:?? 6 Bandwidth set to 250.000000
+INFO  | ??:??:?? 6 Power output set to 22
+DEBUG | ??:??:?? 6 Current limit set to 140.000000
+DEBUG | ??:??:?? 6 Current limit set result 0
+DEBUG | ??:??:?? 6 Set DIO2 as RF switch, result: 0
+DEBUG | ??:??:?? 6 SX126X_RXEN not defined, defaulting to RADIOLIB_NC
+DEBUG | ??:??:?? 6 SX126X_TXEN not defined, defaulting to RADIOLIB_NC
+DEBUG | ??:??:?? 6 Use MCU pin -1 as RXEN and pin -1 as TXEN to control RF switching
+INFO  | ??:??:?? 6 Set RX gain to boosted mode; result: 0
+INFO  | ??:??:?? 6 SX1262 init success
+DEBUG | ??:??:?? 6 Init MQTT
+INFO  | ??:??:?? 6 MQTT configured to use client proxy
+DEBUG | ??:??:?? 6 LoRA bitrate = 116.967873 bytes / sec
+INFO  | ??:??:?? 6 PowerFSM init, USB power=1
+DEBUG | ??:??:?? 6 Node status update: 6 online, 6 total
+INFO  | ??:??:?? 7 [GPS] UC6580 detected
+DEBUG | ??:??:?? 8 [GPS] Publish pos@0:2, hasVal=0, Sats=0, GPSlock=0
+DEBUG | ??:??:?? 8 [GPS] No GPS lock
+DEBUG | ??:??:?? 8 [GPS] onGPSChanged() pos@0 time=0 lat=0 lon=0 alt=0
+INFO  | ??:??:?? 8 [GPS] updatePosition LOCAL pos@0 time=0 lat=0 lon=0 alt=0
+DEBUG | ??:??:?? 8 [GPS] Set local position: lat=0 lon=0 time=0 timestamp=0
+DEBUG | ??:??:?? 8 [GPS] Node status update: 6 online, 6 total
+INFO  | ??:??:?? 9 [PowerFSM] Loss of power in Powered
+INFO  | ??:??:?? 9 [PowerFSM] Loss of power in Powered
+DEBUG | ??:??:?? 9 [PowerFSM] Init NRF52 Bluetooth
+INFO  | ??:??:?? 9 [PowerFSM] Init the Bluefruit nRF52 module
+INFO  | ??:??:?? 9 [PowerFSM] Bluetooth pin set to '949257'
+INFO  | ??:??:?? 9 [PowerFSM] Init the Device Information Service
+INFO  | ??:??:?? 9 [PowerFSM] Init the Battery Service
+INFO  | ??:??:?? 9 [PowerFSM] Init the Mesh bluetooth service
+INFO  | ??:??:?? 9 [PowerFSM] Set up the advertising payload(s)
+INFO  | ??:??:?? 9 [PowerFSM] Advertise
+INFO  | ??:??:?? 11 [Screen] Done with boot screen
+DEBUG | ??:??:?? 11 [Screen] Show standard frames
+DEBUG | ??:??:?? 11 [Screen] Show 8 module frames
+DEBUG | ??:??:?? 11 [Screen] Added modules.  numframes: 8
+DEBUG | ??:??:?? 11 [Screen] Finished build frames. numframes: 12
+INFO  | ??:??:?? 35 [NodeInfo] Send our nodeinfo to mesh (wantReplies=0)
+INFO  | ??:??:?? 35 [NodeInfo] Send owner !66f1c31d/NRFTrackerv2/NTv2
+DEBUG | ??:??:?? 35 [NodeInfo] Initial packet id 1842910387
+DEBUG | ??:??:?? 35 [NodeInfo] Partially randomized packet id 4199244980
+DEBUG | ??:??:?? 35 [NodeInfo] Ignore update from self
+DEBUG | ??:??:?? 35 [NodeInfo] handleReceived(LOCAL) (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x0 Portnum=4 priority=10)
+DEBUG | ??:??:?? 35 [NodeInfo] No modules interested in portnum=4, src=LOCAL
+INFO  | ??:??:?? 35 [NodeInfo] Packet History - insert: Using new slot @uptime 35.314s TRACE NEW
+DEBUG | ??:??:?? 35 [NodeInfo] Expand short PSK #1
+DEBUG | ??:??:?? 35 [NodeInfo] Use AES128 key!
+DEBUG | ??:??:?? 35 [NodeInfo] MQTT onSend - Publish
+DEBUG | ??:??:?? 35 [NodeInfo] encrypted message
+DEBUG | ??:??:?? 35 [NodeInfo] MQTT Publish msh/CA/ON/PTBO/2/e/LongFast/!66f1c31d, 134 bytes
+DEBUG | ??:??:?? 35 [NodeInfo] Send mqtt message on topic 'msh/CA/ON/PTBO/2/e/LongFast/!66f1c31d' to client for proxy
+DEBUG | ??:??:?? 35 [NodeInfo] enqueue for send (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x8 encrypted len=99 hopStart=7 relay=0x1d priority=10)
+DEBUG | ??:??:?? 35 [NodeInfo] txGood=0,txRelay=0,rxGood=0,rxBad=0
+DEBUG | ??:??:?? 35 [RadioIf] Started Tx (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x8 encrypted len=99 hopStart=7 relay=0x1d priority=10)
+DEBUG | ??:??:?? 35 [RadioIf] 0 packets remain in the TX queue
+DEBUG | ??:??:?? 36 [RadioIf] Packet TX: 968ms
+DEBUG | ??:??:?? 36 [RadioIf] Completed sending (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x8 encrypted len=99 hopStart=7 relay=0x1d priority=10)
+DEBUG | ??:??:?? 42 [RadioIf] Corrected frequency offset: 154.031250
+DEBUG | ??:??:?? 42 [RadioIf] Lora RX (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=6 Ch=0x8 encrypted len=99 rxSNR=6 rxRSSI=-30 hopStart=7 relay=0x8c)
+DEBUG | ??:??:?? 42 [RadioIf] Packet RX: 968ms
+DEBUG | ??:??:?? 42 [Router] Rx someone rebroadcasting for us (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 1, WantAck=0, HopLim=6 Ch=0x8 encrypted len=99 rxSNR=6 rxRSSI=-30 hop
+DEBUG | ??:??:?? 42 [Router] Didn't find pending packet
+INFO  | ??:??:?? 42 [Router] Packet History - insert: Reusing slot aged 7.660s TRACE MATCHED PACKET
+DEBUG | ??:??:?? 42 [Router] Ignore dupe incoming msg (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 1, WantAck=0, HopLim=6 Ch=0x8 encrypted len=99 rxSNR=6 rxRSSI=-30 hopStart=7
+DEBUG | ??:??:?? 42 [Router] cancelSending id=0xfa4b64b4, removed=0
+DEBUG | ??:??:?? 42 [Router] Incoming msg was filtered from 0x66f1c31d
+INFO  | ??:??:?? 65 [DeviceTelemetry] Send: air_util_tx=0.026889, channel_utilization=3.226666, battery_level=101, voltage=4.202000, uptime=65
+DEBUG | ??:??:?? 65 [DeviceTelemetry] Partially randomized packet id 918885557
+DEBUG | ??:??:?? 65 [DeviceTelemetry] updateTelemetry LOCAL
+DEBUG | ??:??:?? 65 [DeviceTelemetry] Node status update: 6 online, 6 total
+INFO  | ??:??:?? 65 [DeviceTelemetry] Send packet to phone
+INFO  | ??:??:?? 65 [DeviceTelemetry] Sending local stats: uptime=65, channel_utilization=3.226666, air_util_tx=0.026889, num_online_nodes=6, num_total_nodes=6
+INFO  | ??:??:?? 65 [DeviceTelemetry] num_packets_tx=1, num_packets_rx=1, num_packets_rx_bad=0
+DEBUG | ??:??:?? 65 [DeviceTelemetry] Partially randomized packet id 2311979190
+DEBUG | ??:??:?? 66 [Power] Battery: usbPower=1, isCharging=1, batMv=4204, batPct=100
+
+
