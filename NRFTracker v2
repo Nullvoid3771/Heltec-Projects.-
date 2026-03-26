@@ -80,18 +80,35 @@ Battery
 Trace route ( Specify any trace routes performed): [Close range *distence offsets used: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] (0.0 dB) → Meshtastic a078 [a078] (6.8 dB) → NRFTrackerv2 [NTv2] [21.1 km]
 ← Return: NRFTrackerv2 [NTv2] (6.5 dB) → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] ] 
 
-
+##More long range traceroutes to come. Will include some direct range tests as well. 
 
 
 Areas to improve; (State what you believe needs to be addressed before the launch of the product): Seems about as solid as the heltec v4. 
 
 It was stated the front sticker was going to be changed on the release version. 
 
-Feedback on the NrfTracker v2’s general spec’s:
+Feedback on the NrfTracker v2’s general spec’s: Overall I think the spec's look good, 
 
-Wishlist; what do believe the Nrftracker v2 or future products could most benefit from?: Could use a sd card reader in all future products. 
+Spec's borrowed from https://www.la-resilience.fr/2026/03/heltec-wireless-tracker-v2-nrf/
 
-From documentation provided what should be included or improved on: 
+Features Description
+MCU 	nRF52840
+LoRa chip 	SX1262
+GNSS chip 	UC6580
+Frequency 	863 ~ 928 MHz
+Power 	28 ±1 dBm
+Sensitivity 	-134 dBm
+Bluetooth 	Bluetooth 5 (BLE)
+Resources 	ADC, GPIO, UART, I2C, SPI
+Interfaces 	USB Type-C; 1 × battery connector (JST 1.25 mm); 1 × solar panel connector (JST 1.25 mm); LoRa antenna (IPEX 1.0); GNSS antenna (IPEX 1.0); 2 × 18-pin (2.54 mm)
+Battery: 	N/A
+Solar: N/A
+Temperature 	-20 ~ 70 °C
+Dimensions 	52.00 × 25.40 × 10.26 mm
+
+Wishlist; what do believe the Nrftracker v2 or future products could most benefit from?: Could use a SD card reader in all future products. Maybe a built in bypassable saw filter. 
+
+From documentation provided what should be included or improved on: Haven't seen any offical documentation yet, besides for the eps32 wireless tracker v2. 
 
 
 [Firmware]
