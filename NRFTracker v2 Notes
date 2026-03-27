@@ -144,6 +144,48 @@ Trace route ( Specify any trace routes performed):
 [Long Distence *distence offset used]: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB]MQTT → SKYM LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYM] (6.8 dB) → NRFTrackerv2 [NTv2] [23.7 km]
 ← Return: NRFTrackerv2 [NTv2]MQTT → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB]
 
+Traceroute Packet info: 
+
+Id538456998
+Packet Id538456998
+Timestamp1774639259295
+From Node1727120157
+From Node Id!66f1c31d
+From Node LongNameNRFTrackerv2
+To Node2997321868
+To Node Id!b2a7808c
+To Node LongNameSKYB LongFast wiki.mt.gt msh/CA/ON/PTBO
+Channel3
+Portnum70
+Portnum NameTRACEROUTE_APP
+Encrypted0
+Decrypted Bynode
+Snr-1.25
+Rssi-91
+Hop Limit2
+Hop Start2
+Relay Node29
+Payload Size24
+Want Acktrue
+Priority0
+Payload Preview[Traceroute]
+Rx Time1774639258
+Rx Snr-1.25
+Rx Rssi-91
+Transport Mechanism1
+Decoded Payload
+
+{
+  "snrTowards": [
+    -21
+  ],
+  "snrBack": [
+    -5
+  ]
+}
+
+Positional Packet info: 
+
 Id2393913285
 Packet Id2393913285
 Timestamp1774631545996
