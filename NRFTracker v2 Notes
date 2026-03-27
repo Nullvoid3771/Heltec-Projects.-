@@ -235,7 +235,7 @@ Decoded Payload
 
 =====
 
-Example positional logs w/o packets:
+Example positional logs w/o full packet info:
 
 Date: 2026-03-27
 Time: 1:17:10 p.m.
