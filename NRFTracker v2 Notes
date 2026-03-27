@@ -43,6 +43,22 @@ Realisticly from point A-B with no hops you could be looking at anywhere from 2k
 I see a Ipex port for GNSS (GPS) do I need to install a antenna? 
 No. The positional radio GNSS has a built in antenna however if you would like to install a external GNSS antenna you can. Requires you to modify the circuit by adding a 0-ohm resistor (or other conductive metal or cable) to connect to the IPEX interface.
 
+Can this be used primarily as a real time tracker?
+
+Maybe. I would classify this radio as a last resort when all other stable means of communicating are unavalible. Within local range (lets say within 5km) of multiple nrftracker's you could perform real time tracking. How far you can push that in distence from each other depends on Hops, Mqtt from you or neighbours, and Line of Sight, Antenna type, ect. 
+
+What will happen if it doesn't update frequently? 
+
+It will appear as if your node jumps locations as it comes into proximity to another node that might need to relay back to your monitoring radio if a direct connection isn't possible. If too far from other nodes or poor signal you might not be able to see positional updates but they will still be sent.
+
+What in meshtastic should I set the radio to be best configured for tracking? 
+
+Role Tracker https://meshtastic.org/docs/configuration/radio/device/
+
+Posisitonal configuration https://meshtastic.org/docs/configuration/radio/position/ 
+
+Broacast to mesh by default is 15 minutes you may want to decrease that time if your not using smart positioning. For my testing I did not using Smart Positioning to give myself consistent conditions.
+
 
 
 [Notes as I inspect the radio] 
