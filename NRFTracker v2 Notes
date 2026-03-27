@@ -40,6 +40,9 @@ What kind of range will I get using this radio?
 That's a difficult question to anwser because it depends on a number of factors like other nodes to Hop off of, radio preset ie LongFast, Elevation, Line of sight, Antenna quality, Antenna tuned freqency, Background noise, Regional restrictions
 Realisticly from point A-B with no hops you could be looking at anywhere from 2km to 10km+, but the range can be improves with filter, higher gain antennas, and most importently elevation. 
 
+I see a Ipex port for GNSS (GPS) do I need to install a antenna? 
+No. The positional radio GNSS has a built in antenna however if you would like to install a external GNSS antenna you can. Requires you to modify the circuit by adding a 0-ohm resistor (or other conductive metal or cable) to connect to the IPEX interface.
+
 
 
 [Notes as I inspect the radio] 
