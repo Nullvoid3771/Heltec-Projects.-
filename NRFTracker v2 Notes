@@ -4,6 +4,47 @@ You can see some off hand notes and photos here: https://github.com/Nullvoid3771
 
 [NrfTracker v2]
 
+[Heltec NrfTracker v2] 
+
+First I would like to start by saying that when approched by Heltec Automations to test one of their new products yet to be released I was glad to assist. 
+Please note this is a sample product that has yet to release and further revisions may change with the final product. 
+
+[Q&A]: 
+
+What is the Heltec NrfTracker v2? 
+
+A cost effective unlicensed and decentralized radio that operates using LoRa modulation. Capable of bluetooth, lora, gnss (gps), as well as additional hardware or sensors can added using the serial serial gpio pins for developers. 
+
+Why is the NrfTracker v2 different from the rest? 
+
+What differentiates the Heltec NrfTracker v2 from other LoRa Radios? 
+
+First we should look at the specifications of the radio. We have a change from esp32 to nrf52 which improves the power efficiency, improvement to the transmitsion output power from 22+-dBm to 28+-dBm, a built in gps that does not require any external installtion, and solar charging capable. 
+These 4 are the primary differences from other similar LoRa or Heltec products.  
+
+How easy is it to remove the screen? 
+
+Simple enough; the screen is held to the board by 4 screws and on the underside of the display connects via a delicate ribbon cable.
+Note that the front panel display may need to be temporaily removed in order to safely solder to the gpio pins for additional external hardware. 
+
+What firmware does the NrfTracker v2 comes with?
+
+Shipped with the sample radio it came preinstalled with Meshtastic version 2.7.19. Once released you can update your device to newer versions using. https://flasher.meshtastic.org/
+This however is not the only option, you can also install a alternitive firmware called Meshcore version 1.14. Once released you can update your device to a newwer version using. https://flasher.meshcore.co.uk/
+
+Does Heltec provide a LoRawan or other in house firmware? 
+
+Currently only Meshtastic and Meshcore firmwares are offically supported at this time. 
+
+What kind of range will I get using this radio?
+
+That's a difficult question to anwser because it depends on a number of factors like other nodes to Hop off of, radio preset ie LongFast, Elevation, Line of sight, Antenna quality, Antenna tuned freqency, Background noise, Regional restrictions
+Realisticly from point A-B with no hops you could be looking at anywhere from 2km to 10km+, but the range can be improves with filter, higher gain antennas, and most importently elevation. 
+
+
+
+[Notes as I inspect the radio] 
+
 Hardware design
 -Pro’s: rev 1.0 of the nrftracker v2 Design seems nice close to feeling like it has it's own enclosure just from the front panel. 
 -Con’s: Front panel display may need to be removed in order to safely solder to the gpio pins. 
