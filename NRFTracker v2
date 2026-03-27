@@ -77,8 +77,88 @@ Battery
 
 [Traceroute for NrfTracker v2]
 
-Trace route ( Specify any trace routes performed): [Close range *distence offsets used: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] (0.0 dB) → Meshtastic a078 [a078] (6.8 dB) → NRFTrackerv2 [NTv2] [21.1 km]
-← Return: NRFTrackerv2 [NTv2] (6.5 dB) → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] ] 
+Trace route ( Specify any trace routes performed): 
+
+[Close range *distence offsets used]: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] (0.0 dB) → Meshtastic a078 [a078] (6.8 dB) → NRFTrackerv2 [NTv2] [21.1 km]
+← Return: NRFTrackerv2 [NTv2] (6.5 dB) → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] 
+
+[Long Distence *distence offset used]: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB]MQTT → SKYM LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYM] (6.8 dB) → NRFTrackerv2 [NTv2] [23.7 km]
+← Return: NRFTrackerv2 [NTv2]MQTT → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB]
+
+Id2393913285
+Packet Id2393913285
+Timestamp1774631545996
+From Node1727120157
+From Node Id!66f1c31d
+From Node LongNameNRFTrackerv2
+To Node2997321868
+To Node Id!b2a7808c
+To Node LongNameSKYB LongFast wiki.mt.gt msh/CA/ON/PTBO
+Channel3
+Portnum3
+Portnum NamePOSITION_APP
+Encrypted0
+Decrypted Bynode
+Snr0
+Rssi0
+Hop Limit3
+Hop Start3
+Relay Node0
+Payload Size45
+Want Acktrue
+Priority0
+Payload Preview[Position: 44.29647°, -78.28229°]
+Rx Time1774631545
+Rx Snr0
+Rx Rssi0
+Transport Mechanism5
+Decoded Payload
+
+{
+  "latitudeI": 442964735,
+  "longitudeI": -782822865,
+  "altitude": 161,
+  "time": 1774631544,
+  "locationSource": "LOC_INTERNAL",
+  "timestamp": 1774631518,
+  "altitudeGeoidalSeparation": 0,
+  "HDOP": 89,
+  "groundSpeed": 74,
+  "groundTrack": 1959000,
+  "satsInView": 21,
+  "seqNumber": 2,
+  "precisionBits": 32
+}
+
+[Distence NrfTracker from SKYM 4km]
+
+=====
+
+Example positional logs w/o packets:
+
+Date: 2026-03-27
+Time: 1:17:10 p.m.
+Heading: 250° WSW
+Altitude: 192 m
+
+Date: 2026-03-27
+Time: 1:16:53 p.m.
+Speed: 126.0 km/h
+Heading: 250° WSW
+Altitude: 180 m
+
+Date: 2026-03-27
+Time: 1:12:25 p.m.
+Speed: 74.0 km/h
+Heading: 20° NNE
+Altitude: 161 m
+
+Date: 2026-03-27
+Time: 12:51:02 p.m.
+Speed: 54.0 km/h
+Heading: 90° E
+Altitude: 238 m
+
 
 ##More long range traceroutes to come. Will include some direct range tests as well. 
 
