@@ -14,8 +14,6 @@ What is the Heltec NrfTracker v2?
 
 A cost effective unlicensed and decentralized radio that operates using LoRa modulation. Capable of bluetooth, lora, gnss (gps), as well as additional hardware or sensors can added using the serial serial gpio pins for developers. 
 
-Why is the NrfTracker v2 different from the rest? 
-
 What differentiates the Heltec NrfTracker v2 from other LoRa Radios? 
 
 First we should look at the specifications of the radio. We have a change from esp32 to nrf52 which improves the power efficiency, improvement to the transmitsion output power from 22+-dBm to 28+-dBm, a built in gps that does not require any external installtion, and solar charging capable. 
