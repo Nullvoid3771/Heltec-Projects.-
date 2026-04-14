@@ -71,7 +71,7 @@ Display
 
 Radio type
 -Pro’s: sx1262 common second generation radio prefered over the first generation radio like the 127x. 
-Tests: I have on order a 30 dB attenuator and RF meter to read the output of tx. Firmware reads output set to 22 dBm. Then the PA increases the tx to 28 dBm +-. waiting on the reader to see actual results. Will use role Tracker; broadcast mode all. 
+Tests: RF Meter show's the full TX output to be 28.22 dBm +- and before the internal power amplifier the sx1262 supports 22 dBm verified within the meshtastic debug logs on boot of the node. 
 -Con’s: third lr1121 and forth generation radios lr2021 include dual frequency SubGhz eg. 868 915Mhz and 2.4Ghz. Might be the better choice in the future; except it will need the internal Power amplifiers also to reach 28dBm like the prior generations.  
 
 User provided antenna
