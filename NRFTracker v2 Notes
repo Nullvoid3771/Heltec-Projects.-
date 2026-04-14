@@ -74,7 +74,7 @@ Highly dependent on:
 - Antenna quality and tuning  
 - RF noise / environment  
 
-**Realistic (no hops):**
+**Realistic use case (no hops):**
 - ~2 km → 10+ km  
 
 ---
@@ -104,11 +104,11 @@ Works best:
 ### Update behavior
 
 - Infrequent updates may appear as “location jumps”  
-- Nodes still transmit even if not immediately visible  
+- Nodes still transmit's location even if not immediately visible.  
 
 ---
 
-### Recommended Meshtastic settings
+### Meshtastic settings used for testing. More agressive configurations could be used for Real-Time Tracking. 
 
 - Role: Tracker  
 - Broadcast interval: 900s  
@@ -145,7 +145,7 @@ https://meshtastic.org/docs/configuration/radio/position/
 
 ### Radio (SX1262)
 **Pros**
-- Preferred over SX127x  
+- SX1262 is a preferred radio over SX127x which may have it's support removed come Meshtastic version 3.0 or greater.  
 - Verified ~28.22 dBm TX output see: https://github.com/Nullvoid3771/Heltec-Projects.-/issues/1#issuecomment-4247379117 
 
 **Cons**
@@ -202,6 +202,7 @@ https://meshtastic.org/docs/configuration/radio/position/
 - UC6580 GNSS  
 - Multi-satellite support  
 - No external module required  
+- Satellite GPS lock does aquire. 
 
 ---
 
@@ -230,8 +231,8 @@ https://meshtastic.org/docs/configuration/radio/position/
 
 ## Areas to Improve
 
-- Overall already comparable to Heltec v4  
-- Front sticker will be updated before release  
+- Overall already comparable to Heltec v4, but with better efficenty with some tradeoffs.   
+- Front sticker will be updated before release but the sample sticker is nice. I will note it can get damaged if something presses into it.  
 
 ---
 
@@ -244,7 +245,7 @@ The device is solid and competitive with the Heltec LoRa v4, with the added bene
 ## Wishlist
 
 - SD card support  
-- Optional/bypassable SAW filter  
+- Optional/bypassable LNA & SAW filter  
 
 ---
 
@@ -274,7 +275,7 @@ https://wiki.heltec.org/docs/devices/open-source-hardware/esp32-series/lora-32/w
 
 **Cons**
 - Slightly behind latest alpha  
-- Web flasher may be tricky before official device listing  
+- Meshtastic Web flasher may be tricky to use before official device listing as their is no model to reference.  
 
 ---
 
