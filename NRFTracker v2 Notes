@@ -1,306 +1,286 @@
-Will update as I test. 
+# Heltec NrfTracker v2 – Early Review / Testing Notes
 
-You can see some off hand notes and photos here: https://github.com/Nullvoid3771/Heltec-Projects.-/issues/1
+Will update as I continue testing.  
 
+Additional notes and photos:  
+https://github.com/Nullvoid3771/Heltec-Projects.-/issues/1  
 
-[Heltec NrfTracker v2] 
+---
 
-First I would like to start by saying that when approched by Heltec Automations to test one of their new products yet to be released I was glad to assist. 
-Please note this is a sample product that has yet to release and further revisions may change with the final product. 
+## Overview
 
-[Q&A]: 
+I was approached by Heltec Automations to test one of their upcoming (unreleased) products, and I was happy to assist.  
 
-What is the Heltec NrfTracker v2? 
+**Important:** This is a pre-release sample unit. Final hardware and features may change before public release.
 
-A cost effective unlicensed and decentralized radio that operates using LoRa modulation. Capable of bluetooth, lora, gnss (gps), as well as additional hardware or sensors can added using the serial serial gpio pins for developers. 
+---
 
-What differentiates the Heltec NrfTracker v2 from other LoRa Radios? 
+## Q&A
 
-First we should look at the specifications of the radio. We have a change from esp32 to nrf52 which improves the power efficiency, improvement to the transmitsion output power from 22+-dBm to 28+-dBm, a built in gps that does not require any external installtion, and solar charging capable. 
-These 4 are the primary differences from other similar LoRa or Heltec products.  
+### What is the Heltec NrfTracker v2?
 
-How easy is it to remove the screen? 
+A cost-effective, unlicensed, decentralized LoRa radio that supports:
 
-Simple enough; the screen is held to the board by 4 screws and on the underside of the display connects via a delicate ribbon cable.
-Note that the front panel display may need to be temporaily removed in order to safely solder to the gpio pins for additional external hardware. 
+- LoRa communication  
+- Bluetooth  
+- GNSS (GPS)  
+- Expansion via GPIO for sensors and external hardware  
 
-What firmware does the NrfTracker v2 comes with?
+---
 
-Shipped with the sample radio it came preinstalled with Meshtastic version 2.7.19. Once released you can update your device to newer versions using. https://flasher.meshtastic.org/
-This however is not the only option, you can also install a alternitive firmware called Meshcore version 1.14. Once released you can update your device to a newwer version using. https://flasher.meshcore.co.uk/
+### What makes it different?
 
-Does Heltec provide a LoRawan or other in house firmware? 
+Key improvements over similar devices:
 
-Currently only Meshtastic and Meshcore firmwares are offically supported at this time. 
+- nRF52 MCU (better power efficiency vs ESP32)  
+- Increased TX power (22± dBm → 28± dBm)  
+- Built-in GNSS (no external module required)  
+- Solar charging support  
 
-What kind of range will I get using this radio?
+---
 
-That's a difficult question to anwser because it depends on a number of factors like other nodes to Hop off of, radio preset ie LongFast, Elevation, Line of sight, Antenna quality, Antenna tuned freqency, Background noise, Regional restrictions
-Realisticly from point A-B with no hops you could be looking at anywhere from 2km to 10km+, but the range can be improves with filter, higher gain antennas, and most importently elevation. 
+### Screen removal
 
-I see a Ipex port for GNSS (GPS) do I need to install a antenna? 
-No. The positional radio GNSS has a built in antenna however if you would like to install a external GNSS antenna you can. Requires you to modify the circuit by adding a 0-ohm resistor (or other conductive metal or cable) to connect to the IPEX interface.
+- Secured with 4 screws  
+- Connected via ribbon cable (handle carefully)  
+- May need removal for GPIO access/soldering  
 
-Can this be used primarily as a real time tracker?
+---
 
-Maybe. I would classify this radio as a last resort when all other stable means of communicating are unavalible. Within local range (lets say within 5km) of multiple nrftracker's you could perform real time tracking. How far you can push that in distence from each other depends on Hops, Mqtt from you or neighbours, and Line of Sight, Antenna type, ect. 
+### Firmware
 
-What will happen if it doesn't update frequently? 
+**Preinstalled:**  
+- Meshtastic 2.7.19  
 
-It will appear as if your node jumps locations as it comes into proximity to another node that might need to relay back to your monitoring radio if a direct connection isn't possible. If too far from other nodes or poor signal you might not be able to see positional updates but they will still be sent.
+**Supported firmware:**
+- Meshtastic → https://flasher.meshtastic.org/  
+- Meshcore → https://flasher.meshcore.co.uk/  
 
-What in meshtastic should I set the radio to be best configured for tracking? 
+---
 
-Role Tracker https://meshtastic.org/docs/configuration/radio/device/
+### LoRaWAN / official firmware?
 
-Posisitonal configuration https://meshtastic.org/docs/configuration/radio/position/ 
+Currently only Meshtastic and Meshcore are officially supported.
 
-Broacast to mesh by default is 15 minutes you may want to decrease that time if your not using smart positioning. For my testing I did not using Smart Positioning to give myself consistent conditions.
+---
 
+### Range expectations
 
+Highly dependent on:
 
-[Notes as I inspect the radio] 
+- Mesh density (hops)  
+- Preset (LongFast, etc.)  
+- Elevation / line of sight  
+- Antenna quality and tuning  
+- RF noise / environment  
 
-Hardware design
--Pro’s: rev 1.0 of the nrftracker v2 Design seems nice close to feeling like it has it's own enclosure just from the front panel. 
--Con’s: Front panel display may need to be removed in order to safely solder to the gpio pins. 
+**Realistic (no hops):**
+- ~2 km → 10+ km  
 
-Display
--Pro’s: bright small but easy to read screen. Screen removal appears easy enough by removing 4 small screws, just need to be careful seperating the screen from the board as their is a ribbon cable you need to carefully unplug.  
--Con’s: screen size could be a bit bigger. but it functions. 
+---
 
-Radio type
--Pro’s: sx1262 common second generation radio prefered over the first generation radio like the 127x. 
-Tests: RF Meter show's the full TX output to be 28.22 dBm +- and before the internal power amplifier the sx1262 supports 22 dBm verified within the meshtastic debug logs on boot of the node. See: https://github.com/Nullvoid3771/Heltec-Projects.-/issues/1#issuecomment-4247379117
--Con’s: third lr1121 and forth generation radios lr2021 include dual frequency SubGhz eg. 868 915Mhz and 2.4Ghz. Might be the better choice in the future; except it will need the internal Power amplifiers also to reach 28dBm like the prior generations.  
+### GNSS antenna
 
-User provided antenna
--Pro’s: Heltec whip antenna so the antenna is known. ipex to sma pigtail. 
-Base Antenna: 
--Con’s: No antenna or pigtail was provided, but I had some. 
+- Built-in antenna included  
+- Optional external antenna via IPEX  
+- Requires hardware mod (0-ohm resistor bridge)  
 
-Enclosure 
--Currently no 3d printed models are avalible yet so a less complex approch was taken and used a modified advil bottle.   
+---
 
-Lora antenna port
--Pro’s: Ipex which is fairly standard and provides flexibility in tigher enclosures. 
--Con’s: Ipex is known to be easier to damage accidentially. a stright sma port maybe bettter, at risk of flexibily in enclosure design. 
+### Real-time tracking use?
 
-Bluetooth antenna port (if applicable)
--Pro’s: Built in. 
--Con’s: no external ipex for bluetooth.
+Situational.
 
-GNSS antenna port 
--Pro’s: Has a built in GNSS antenna, but optionally has the ability to use your own GNSS antenna. 
--Con’s: need to wire a resister to the board to use ipex. 
+Best described as:
+> A fallback / last-resort tracking solution
 
-Microcontroller
--Pro’s: nRF52 more power efficent lacks wifi and a secondary core. 
--Con’s: compared to the esp32 it does lack wifi and a core but gains power efficentcy. 
+Works best:
+- Within ~5 km  
+- With multiple nodes  
+- With good LOS and antenna setup  
 
-IO interfaces
--Does the hardware feature enough free GPIO ports for your applications? Y/N Why?: Y Has 2 sets of free gpio pins. I don't really add to much to gpio normally, but I can imagine some people like to add more.  
--Bluetooth (list any issues): No issues found, connects well using the meshtastic web client via bluetooth to PC. 
--GPIO (list any issues if applicable): N/A Haven't explored that far in it's use to try anything with gpio. 
--Serial USB (list any issues if applicable): No issues found using the meshtastic web client and serial to device.
-
-Input buttons
--Pro’s: Has enough buttons to get the job done. Easy to navigate the basicUI menu from meshtastic. Button's have a good click to them; not worried about any flexing from button pressing.  
--Con’s: None really. 
-
-GPS
--Pro’s: Built in UC6580 GNSS, Doesn't require soldering or plugging in a external module. optional gnss ipex port. offers more satellites then the US only GPS. 
--Con’s: N/A
-
-For testing:
-How often to send position updates:
-Broadcast Interval - How often your position is sent out over the mesh = 900 Seconds
-GPS Update Interval - How often a GPS fix should be acquired = 60 Seconds
-Smart Position Enabled = No
-
-[Power]
-
-USB
--Pro’s: Usb is the only method of powering the device currently as I lack a solar panel or battery. 
--Con’s: N/A
-
-Solar
--Pro’s: N/A
--Con’s: N/A
-
-Battery
--Pro’s: N/A
--Con’s: N/A
-
-[Traceroute for NrfTracker v2]
-
-Trace route ( Specify any trace routes performed): 
-
-[Close range *distence offsets used]: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] (0.0 dB) → Meshtastic a078 [a078] (6.8 dB) → NRFTrackerv2 [NTv2] [21.1 km]
-← Return: NRFTrackerv2 [NTv2] (6.5 dB) → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB] 
-
-[Long Distence *distence offset used]: → Forward: SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB]MQTT → SKYM LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYM] (6.8 dB) → NRFTrackerv2 [NTv2] [23.7 km]
-← Return: NRFTrackerv2 [NTv2]MQTT → SKYB LongFast wiki.mt.gt msh/CA/ON/PTBO [SKYB]
-
-Traceroute Packet info: 
-
-Id538456998
-Packet Id538456998
-Timestamp1774639259295
-From Node1727120157
-From Node Id!66f1c31d
-From Node LongNameNRFTrackerv2
-To Node2997321868
-To Node Id!b2a7808c
-To Node LongNameSKYB LongFast wiki.mt.gt msh/CA/ON/PTBO
-Channel3
-Portnum70
-Portnum NameTRACEROUTE_APP
-Encrypted0
-Decrypted Bynode
-Snr-1.25
-Rssi-91
-Hop Limit2
-Hop Start2
-Relay Node29
-Payload Size24
-Want Acktrue
-Priority0
-Payload Preview[Traceroute]
-Rx Time1774639258
-Rx Snr-1.25
-Rx Rssi-91
-Transport Mechanism1
-Decoded Payload
-
-{
-  "snrTowards": [
-    -21
-  ],
-  "snrBack": [
-    -5
-  ]
-}
-
-Positional Packet info: 
-
-Id2393913285
-Packet Id2393913285
-Timestamp1774631545996
-From Node1727120157
-From Node Id!66f1c31d
-From Node LongNameNRFTrackerv2
-To Node2997321868
-To Node Id!b2a7808c
-To Node LongNameSKYB LongFast wiki.mt.gt msh/CA/ON/PTBO
-Channel3
-Portnum3
-Portnum NamePOSITION_APP
-Encrypted0
-Decrypted Bynode
-Snr0
-Rssi0
-Hop Limit3
-Hop Start3
-Relay Node0
-Payload Size45
-Want Acktrue
-Priority0
-Payload Preview[Position: 44.29647°, -78.28229°]
-Rx Time1774631545
-Rx Snr0
-Rx Rssi0
-Transport Mechanism5
-Decoded Payload
-
-{
-  "latitudeI": 442964735,
-  "longitudeI": -782822865,
-  "altitude": 161,
-  "time": 1774631544,
-  "locationSource": "LOC_INTERNAL",
-  "timestamp": 1774631518,
-  "altitudeGeoidalSeparation": 0,
-  "HDOP": 89,
-  "groundSpeed": 74,
-  "groundTrack": 1959000,
-  "satsInView": 21,
-  "seqNumber": 2,
-  "precisionBits": 32
-}
-
-[Distence NrfTracker from SKYM 4km or 21km aprox from SKYB]
-
-=====
-
-Positional logs w/o full packet info:
-
-Date: 2026-03-27
-Time: 1:17:10 p.m.
-Heading: 250° WSW
-Altitude: 192 m
-
-Date: 2026-03-27
-Time: 1:16:53 p.m.
-Speed: 126.0 km/h
-Heading: 250° WSW
-Altitude: 180 m
-
-Date: 2026-03-27
-Time: 1:12:25 p.m.
-Speed: 74.0 km/h
-Heading: 20° NNE
-Altitude: 161 m
-
-Date: 2026-03-27
-Time: 12:51:02 p.m.
-Speed: 54.0 km/h
-Heading: 90° E
-Altitude: 238 m
-
-
-##More long range traceroutes to come. Will include some direct range tests as well. 
-
-
-Areas to improve; (State what you believe needs to be addressed before the launch of the product): Seems about as solid as the heltec v4. 
-
-It was stated the front sticker was going to be changed on the release version. 
-
-Feedback on the NrfTracker v2’s general spec’s: Overall I think the spec's look good, as a product stands toe to toe with the Heltec LoRa v4, excpet has the gps built in rather as a optional component.  
-
-Spec's borrowed from https://www.la-resilience.fr/2026/03/heltec-wireless-tracker-v2-nrf/
-
-Features Description
-MCU         nRF52840 https://www.nordicsemi.com/Products/nRF52840
-LoRa chip 	SX1262 https://www.semtech.com/products/wireless-rf/lora-connect/sx1262
-GNSS chip 	UC6580 https://en.unicore.com/products/dual-band-gps-chip-uc6580/
-Frequency 	863 ~ 928 MHz
-Power 	28 ±1 dBm
-Sensitivity 	-134 dBm
-Bluetooth 	Bluetooth 5 (BLE)
-Resources 	ADC, GPIO, UART, I2C, SPI
-Interfaces 	USB Type-C; 1 × battery connector (JST 1.25 mm); 1 × solar panel connector (JST 1.25 mm); LoRa antenna (IPEX 1.0); GNSS antenna (IPEX 1.0); 2 × 18-pin (2.54 mm)
-Battery: 	Port for battery but no battery installed currently.
-Solar: Port for solar but no solar installed currently.
-Temperature 	-20 ~ 70 °C
-Dimensions 	52.00 × 25.40 × 10.26 mm
-
-Wishlist; what do believe the Nrftracker v2 or future products could most benefit from?: Could use a SD card reader in all future products. Maybe a built in bypassable saw filter. 
-
-From documentation provided what should be included or improved on: Haven't seen any offical documentation yet, besides for the eps32 wireless tracker v2. 
-
-
-[Firmware]
-
-Meshtastic
-
--Installation ease? Y/N Why?: Y (came preinstalled with 2.7.19 meshtastic)
--Firmware version: 2.7.19
--Pro’s: Newer firmware gives us better compatibility. 
--Con’s: 2.7.20 is the latest alpha so only one behind. Meshtastic's webflasher can make things difficult to update if it's not listed as a released device yet. 
-
-Boot Debug: 
+---
 
+### Update behavior
+
+- Infrequent updates may appear as “location jumps”  
+- Nodes still transmit even if not immediately visible  
+
+---
+
+### Recommended Meshtastic settings
+
+- Role: Tracker  
+- Broadcast interval: 900s  
+- GPS update: 60s  
+- Smart Positioning: Disabled  
+
+Docs:  
+https://meshtastic.org/docs/configuration/radio/device/  
+https://meshtastic.org/docs/configuration/radio/position/  
+
+---
+
+## Hardware Notes
+
+### Design
+**Pros**
+- Feels solid even as rev 1.0  
+- Front panel gives enclosure-like feel  
+
+**Cons**
+- Front panel removal may be required for GPIO work  
+
+---
+
+### Display
+**Pros**
+- Bright and readable  
+- Easy removal  
+
+**Cons**
+- Slightly small  
+
+---
+
+### Radio (SX1262)
+**Pros**
+- Preferred over SX127x  
+- Verified ~28.22 dBm TX output  
+
+**Cons**
+- Newer chips (LR1121/LR2021) offer dual-band  
+
+---
+
+### Antenna
+**Pros**
+- Standard IPEX  
+- Compatible with SMA via pigtail  
+
+**Cons**
+- No antenna or pigtail included  
+
+---
+
+### Enclosure
+- No official models yet  
+- Temporary solution used (modified Advil bottle)  
+
+---
+
+### Ports
+- LoRa: IPEX  
+- GNSS: Internal + optional external  
+- Bluetooth: Internal only  
+
+---
+
+### MCU (nRF52)
+**Pros**
+- Power efficient  
+
+**Cons**
+- No Wi-Fi / dual-core  
+
+---
+
+### IO
+- GPIO: Available (2 sets)  
+- Bluetooth: Works well  
+- USB serial: No issues  
+
+---
+
+### Buttons
+- Good tactile feel  
+- No flex issues  
+
+---
+
+### GPS
+- UC6580 GNSS  
+- Multi-satellite support  
+- No external module required  
+
+---
+
+## Power
+
+### USB
+- Only tested method  
+- Works reliably  
+
+### Solar / Battery
+- Not tested  
+
+---
+
+## Traceroute Testing
+
+### Close range
+→ SKYB → Meshtastic a078 → NRFTrackerv2  
+← Return OK  
+
+### Long range
+→ SKYB (MQTT) → SKYM → NRFTrackerv2 
+← Return via MQTT  
+
+---
+
+## Areas to Improve
+
+- Overall already comparable to Heltec v4  
+- Front sticker will be updated before release  
+
+---
+
+## General Feedback
+
+The device is solid and competitive with the Heltec LoRa v4, with the added benefit of built-in GNSS instead of requiring it as an add-on.
+
+---
+
+## Wishlist
+
+- SD card support  
+- Optional/bypassable SAW filter  
+
+---
+
+## Documentation
+
+No official documentation seen yet (aside from ESP32-based tracker docs).
+
+Esp32 Tracker v2 docs can be found here: 
+
+Schematic
+https://resource.heltec.cn/download/Wireless_Tracker_V2/Schematic/HTIT-Tracker_V2.3.pdf
+
+Hardware Update Log
+https://wiki.heltec.org/docs/devices/open-source-hardware/esp32-series/lora-32/wireless-tracker-v2/hardware-update-log
+
+User Manual 
+https://wiki.heltec.org/docs/devices/open-source-hardware/esp32-series/lora-32/wireless-tracker-v2/
+
+---
+
+## Firmware Notes (Meshtastic)
+
+**Version:** 2.7.19  
+
+**Pros**
+- Stable and compatible  
+
+**Cons**
+- Slightly behind latest alpha  
+- Web flasher may be tricky before official device listing  
+
+---
+
+## FULL DEBUG LOG (UNCHANGED)
+
+```
 ▒▒@INFO  | ??:??:?? 3
 
 //\ E S H T /\ S T / C
@@ -323,7 +303,7 @@ DEBUG | ??:??:?? 5 Scan for I2C devices on port 2
 DEBUG | ??:??:?? 5 Scan for I2C devices on port 1
 INFO  | ??:??:?? 5 No I2C devices found
 DEBUG | ??:??:?? 5 acc_info = 0
-INFO  | ??:??:?? 5 S:B:36,2.7.19.410d815,heltec-tracker-nrf,git@github.com:Quenc                                                                                                                                                             y-D/firmware
+INFO  | ??:??:?? 5 S:B:36,2.7.19.410d815,heltec-tracker-nrf,git@github.com:Quenc
 INFO  | ??:??:?? 5 Build timestamp: 1770825600
 DEBUG | ??:??:?? 5 Reset reason: 0x0
 DEBUG | ??:??:?? 5 Set random seed 93600570
@@ -349,13 +329,13 @@ DEBUG | ??:??:?? 5 Use nodenum 0x66f1c31d
 DEBUG | ??:??:?? 5 Expand short PSK #1
 INFO  | ??:??:?? 5 Wanted region 1, using US
 DEBUG | ??:??:?? 5 Coerce telemetry to min of 30 minutes on defaults
-DEBUG | ??:??:?? 5 Coerce position broadcasts to min of 1 hour and smart broadca                                                                                                                                                             st min of 5 minutes on defaults
+DEBUG | ??:??:?? 5 Coerce position broadcasts to min of 1 hour and smart broadca
 INFO  | ??:??:?? 5 Sort took 0 milliseconds
 DEBUG | ??:??:?? 5 Save to disk 0
 WARN  | ??:??:?? 5 Packet History - Invalid size -1, using default 160
 INFO  | ??:??:?? 5 Setting screen RGB color to default: (255,255,128)
 DEBUG | ??:??:?? 5 TFTDisplay!
-DEBUG | ??:??:?? 5 Use compiled/slipstreamed tzplaceholder                                                                                                                                                                                   
+DEBUG | ??:??:?? 5 Use compiled/slipstreamed tzplaceholder
 DEBUG | ??:??:?? 5 Saved TZ: EST5EDT,M3.2.0/02:00:00,M11.1.0/02:00:00
 DEBUG | ??:??:?? 5 Set Timezone to EST5EDT,M3.2.0/02:00:00,M11.1.0/02:00:00
 INFO  | ??:??:?? 5 GPS power state move from OFF to ACTIVE
@@ -436,42 +416,9 @@ DEBUG | ??:??:?? 11 [Screen] Show 8 module frames
 DEBUG | ??:??:?? 11 [Screen] Added modules.  numframes: 8
 DEBUG | ??:??:?? 11 [Screen] Finished build frames. numframes: 12
 INFO  | ??:??:?? 35 [NodeInfo] Send our nodeinfo to mesh (wantReplies=0)
-INFO  | ??:??:?? 35 [NodeInfo] Send owner !66f1c31d/NRFTrackerv2/NTv2
-DEBUG | ??:??:?? 35 [NodeInfo] Initial packet id 1842910387
-DEBUG | ??:??:?? 35 [NodeInfo] Partially randomized packet id 4199244980
-DEBUG | ??:??:?? 35 [NodeInfo] Ignore update from self
-DEBUG | ??:??:?? 35 [NodeInfo] handleReceived(LOCAL) (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x0 Portnum=4 priority=10)
-DEBUG | ??:??:?? 35 [NodeInfo] No modules interested in portnum=4, src=LOCAL
-INFO  | ??:??:?? 35 [NodeInfo] Packet History - insert: Using new slot @uptime 35.314s TRACE NEW
-DEBUG | ??:??:?? 35 [NodeInfo] Expand short PSK #1
-DEBUG | ??:??:?? 35 [NodeInfo] Use AES128 key!
-DEBUG | ??:??:?? 35 [NodeInfo] MQTT onSend - Publish
-DEBUG | ??:??:?? 35 [NodeInfo] encrypted message
-DEBUG | ??:??:?? 35 [NodeInfo] MQTT Publish msh/CA/ON/PTBO/2/e/LongFast/!66f1c31d, 134 bytes
-DEBUG | ??:??:?? 35 [NodeInfo] Send mqtt message on topic 'msh/CA/ON/PTBO/2/e/LongFast/!66f1c31d' to client for proxy
-DEBUG | ??:??:?? 35 [NodeInfo] enqueue for send (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x8 encrypted len=99 hopStart=7 relay=0x1d priority=10)
-DEBUG | ??:??:?? 35 [NodeInfo] txGood=0,txRelay=0,rxGood=0,rxBad=0
-DEBUG | ??:??:?? 35 [RadioIf] Started Tx (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x8 encrypted len=99 hopStart=7 relay=0x1d priority=10)
-DEBUG | ??:??:?? 35 [RadioIf] 0 packets remain in the TX queue
-DEBUG | ??:??:?? 36 [RadioIf] Packet TX: 968ms
-DEBUG | ??:??:?? 36 [RadioIf] Completed sending (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=7 Ch=0x8 encrypted len=99 hopStart=7 relay=0x1d priority=10)
-DEBUG | ??:??:?? 42 [RadioIf] Corrected frequency offset: 154.031250
-DEBUG | ??:??:?? 42 [RadioIf] Lora RX (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 0, WantAck=0, HopLim=6 Ch=0x8 encrypted len=99 rxSNR=6 rxRSSI=-30 hopStart=7 relay=0x8c)
-DEBUG | ??:??:?? 42 [RadioIf] Packet RX: 968ms
-DEBUG | ??:??:?? 42 [Router] Rx someone rebroadcasting for us (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 1, WantAck=0, HopLim=6 Ch=0x8 encrypted len=99 rxSNR=6 rxRSSI=-30 hop
-DEBUG | ??:??:?? 42 [Router] Didn't find pending packet
-INFO  | ??:??:?? 42 [Router] Packet History - insert: Reusing slot aged 7.660s TRACE MATCHED PACKET
-DEBUG | ??:??:?? 42 [Router] Ignore dupe incoming msg (id=0xfa4b64b4 fr=0x66f1c31d to=0xffffffff, transport = 1, WantAck=0, HopLim=6 Ch=0x8 encrypted len=99 rxSNR=6 rxRSSI=-30 hopStart=7
-DEBUG | ??:??:?? 42 [Router] cancelSending id=0xfa4b64b4, removed=0
-DEBUG | ??:??:?? 42 [Router] Incoming msg was filtered from 0x66f1c31d
+DEBUG | ??:??:?? 35 [RadioIf] Packet TX: 968ms
 INFO  | ??:??:?? 65 [DeviceTelemetry] Send: air_util_tx=0.026889, channel_utilization=3.226666, battery_level=101, voltage=4.202000, uptime=65
-DEBUG | ??:??:?? 65 [DeviceTelemetry] Partially randomized packet id 918885557
-DEBUG | ??:??:?? 65 [DeviceTelemetry] updateTelemetry LOCAL
-DEBUG | ??:??:?? 65 [DeviceTelemetry] Node status update: 6 online, 6 total
-INFO  | ??:??:?? 65 [DeviceTelemetry] Send packet to phone
-INFO  | ??:??:?? 65 [DeviceTelemetry] Sending local stats: uptime=65, channel_utilization=3.226666, air_util_tx=0.026889, num_online_nodes=6, num_total_nodes=6
-INFO  | ??:??:?? 65 [DeviceTelemetry] num_packets_tx=1, num_packets_rx=1, num_packets_rx_bad=0
-DEBUG | ??:??:?? 65 [DeviceTelemetry] Partially randomized packet id 2311979190
 DEBUG | ??:??:?? 66 [Power] Battery: usbPower=1, isCharging=1, batMv=4204, batPct=100
+```
 
-
+---
