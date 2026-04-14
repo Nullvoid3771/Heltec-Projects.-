@@ -146,7 +146,7 @@ https://meshtastic.org/docs/configuration/radio/position/
 ### Radio (SX1262)
 **Pros**
 - Preferred over SX127x  
-- Verified ~28.22 dBm TX output  
+- Verified ~28.22 dBm TX output see: https://github.com/Nullvoid3771/Heltec-Projects.-/issues/1#issuecomment-4247379117 
 
 **Cons**
 - Newer chips (LR1121/LR2021) offer dual-band  
