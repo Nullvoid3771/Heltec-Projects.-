@@ -139,7 +139,7 @@ https://meshtastic.org/docs/configuration/radio/position/
 - Easy removal  
 
 **Cons**
-- Slightly small  
+- Slightly small, but ideal for compact enclosures.   
 
 ---
 
@@ -164,8 +164,8 @@ https://meshtastic.org/docs/configuration/radio/position/
 ---
 
 ### Enclosure
-- No official models yet  
-- Temporary solution used (modified Advil bottle)  
+- Temporary solution used (modified Advil bottle) 
+- New enclosure used credit for designing the case goes to ShotokuTech. https://www.thingiverse.com/thing:7330371
 
 ---
 
@@ -245,7 +245,7 @@ The device is solid and competitive with the Heltec LoRa v4, with the added bene
 ## Wishlist
 
 - SD card support  
-- Optional/bypassable LNA & SAW filter  
+- Built-in/Optional/bypassable LNA & SAW filter  
 
 ---
 
@@ -279,7 +279,7 @@ https://wiki.heltec.org/docs/devices/open-source-hardware/esp32-series/lora-32/w
 
 ---
 
-## FULL DEBUG LOG (UNCHANGED)
+## FULL DEBUG LOG 
 
 ```
 ▒▒@INFO  | ??:??:?? 3
