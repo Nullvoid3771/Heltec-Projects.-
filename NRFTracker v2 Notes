@@ -92,7 +92,7 @@ Highly dependent on:
 Situational.
 
 Best described as:
-> A fallback / last-resort tracking solution
+- A fallback / last-resort tracking solution
 
 Works best:
 - Within ~5 km  
@@ -101,7 +101,7 @@ Works best:
 
 ---
 
-### Update behavior
+### GPS location update behavior
 
 - Infrequent updates may appear as “location jumps”  
 - Nodes still transmit's location even if not immediately visible.  
